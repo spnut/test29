@@ -63,17 +63,25 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(2)
 
 
-        # Show question page
+        ########################################## Show question page ##########################################
+        header_text_show_quiz = self.browser.find_element_by_tag_name('H1').text
+        self.assertIn('Select your Quiz', header_text_show_quiz)
+
         select_quiz = self.browser.find_element_by_id("q1")
+        self.assertEqual(select_quiz.get_attribute('name'), 'Fish is cat')
         select_quiz.click()
 
+        ########################################### Detail Quiz page ###########################################
         # select choice
+        show_question_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Fish is cat', show_question_text)
+
         choice_1 = self.browser.find_element_by_id("c1")
         self.assertEqual(choice_1.get_attribute('value'), 'True')
 
-        select_choice = self.browser.find_element_by_id("c2")
-        self.assertEqual(select_choice.get_attribute('value'), 'False')
-        select_choice.click()
+        choice_2 = self.browser.find_element_by_id("c2")
+        self.assertEqual(choice_2.get_attribute('value'), 'False')
+        choice_2.click()
         time.sleep(2)
 
         submit_Bt = self.browser.find_element_by_id('send')
@@ -81,7 +89,7 @@ class NewVisitorTest(unittest.TestCase):
         submit_Bt.click()
         time.sleep(2)
 
-        # result page
+        ############################################# result page #############################################
         self.assertIn('result', self.browser.title)
         result_text = self.browser.find_element_by_tag_name('p').text
         self.assertIn('You answer True', result_text)

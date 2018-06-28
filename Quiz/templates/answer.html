@@ -2,7 +2,7 @@
 <H1>Select your Quiz</H1>
 <ul>
 {% for question in show_quiz %}
-    <li><a href="{% url 'Quiz:detail' question.id %}" id="q{{forloop.counter}}" >{{ question.question_text }}</a></li>
+    <li><a href="{% url 'Quiz:detail' question.id %}" id="q{{forloop.counter}}" name="{{ question.question_text }}" >{{ question.question_text }}</a></li>
 {% endfor %}
 </ul>
 
